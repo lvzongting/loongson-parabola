@@ -46,6 +46,10 @@ Lazy Install
     分区并格式化硬盘，去百度网盘下载最新的base tarbar ，解压到你的硬盘。
     
      网盘地址 ： http://pan.baidu.com/s/1xgDNM 
+     
+    一个更新的，我自己生成的base tarbar ，在这个网盘地址，生成于2013-11-21
+     
+     网盘地址 ： http://pan.baidu.com/s/1cOaj5
     
 第三步：
     把硬盘放回去，然后重启。
