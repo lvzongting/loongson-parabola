@@ -34,6 +34,12 @@ In i686 or x86_64
 
 可以考虑通过qmeu chroot进去之后，来执行安装脚本。
 
+qemu-static-user 方法尝试过了，用的是debian的包1.6.0，那里的mips64el chroot进去之后exe format err。我猜想是debian的mips64el是mipsII 而parabola的是mispIII所以才造成这样的问题。
+
+另外我发现用debootstrap 来做这个事情非常顺手，因为有个非常牛的工具叫做qemu-debootstrap 专门做这个事情。
+
+两个方向，从源码编译一下qemu-static-user再试一下，第二个方向通过clfs看看boot之前至少要做什么，比如mknod  /dev 做完之后，等启动进入系统之后在进行二阶段。
+
 Lazy Install
 偷懒式安装法
 
