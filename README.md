@@ -40,6 +40,8 @@ qemu-static-user 方法尝试过了，用的是debian的包1.6.0，那里的mips
 
 两个方向，从源码编译一下qemu-static-user再试一下，第二个方向通过clfs看看boot之前至少要做什么，比如mknod  /dev 做完之后，等启动进入系统之后在进行二阶段。
 
+第一方向有希望，我找到loongson的qemu的包了，而且我也会编译静态的qemu了。等我尝试一下。如果成功我就发AUR。
+
 Lazy Install
 偷懒式安装法
 
