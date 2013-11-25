@@ -51,11 +51,12 @@ Lazy Install
     把硬盘拆下来连到其他有系统的计算机上
 
 第二步：
-    分区并格式化硬盘，去百度网盘下载最新的base tarbar ，解压到你的硬盘。
+     分区并格式化硬盘，去百度网盘下载最新的base tarbar ，解压到你的硬盘。
     
      网盘地址 ： http://pan.baidu.com/s/1xgDNM 
      
-    一个更新的，我自己生成的base tarbar ，在这个网盘地址，生成于2013-11-21
+ 
+     一个更新的，我自己生成的base tarbar ，在这个网盘地址，生成于2013-11-21
      
      网盘地址 ： http://pan.baidu.com/s/1cOaj5
     
@@ -64,5 +65,54 @@ Lazy Install
 
 
 PS：Lazy Install这个方法没仔细写，就是个思路，因为百度盘上的那个tarbar有些老，我还更新。而且我想把第一个先弄好，第二个很简单估计各位都能看懂。
+
+==========================
+
+debian foreign install
+=================
+
+第一步，将存储介质接到另外一个运行linux的主机上，比如x86的笔记本或是x86_64位的台式机等等。
+
+    比如，将小本的8G的电子盘通过ce to sata 接口接到主机上。
+    比如，直接将U盘接到主机上。
+
+第二步，将这个存贮介质分区格式化。
+
+    fdisk /dev/sdb  或是 gparted 
+    然后格式化。
+    mkfs.ext3 /dev/sdb1
+    mkfs.ext4 /dev/sdb2
+
+第三步，将格式化好的分区挂载好。
+
+    mount /dev/sdb2 /mnt
+
+第四步，通过qemu-debootstrap 进行foreign install
+
+    sudo apt-get install qemu-user-static
+    sudo apt-get install debootstrap
+    sudo qemu-debootstrap --arch mipsel sid /mnt http://debian.ustc.edu.cn/debian
+
+
+    特别的：如果想安装一些特别的包可以用如下命令
+    sudo qemu-debootstrap --arch mipsel --include ssh,net-tools sid /mnt http://debian.ustc.edu.cn/debian
+    
+
+第五步，挂载boot分区,并将启动文件写好。
+
+    mv /mnt/boot{,.bak}
+    mkdir -p /mnt/boot
+    mount /dev/sdb1 /mnt/boot
+    cp -rf /mnt/boot.bak /mnt/boot
+    sync
+
+第六步，卸下分区。
+
+    umount /mnt/boot
+    umount /mnt
+
+第七步，将存储介质放回8089D小本。
+
+    最后一步，重启8089D。然后你就进入debian sid了。
 
 
