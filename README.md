@@ -24,7 +24,7 @@ In i686 or x86_64
     mkdir -m 0555 -p "$newroot"/{sys,proc}
 
 
-    #pacman -r target/ -Sy base --config pacman.conf --arch mips64e
+    #pacman -r target/ -Sy base --config pacman.conf --arch mips64el
 
 
     PMON> load (usb0,0)/boot/vmlinuz-linux-libre
